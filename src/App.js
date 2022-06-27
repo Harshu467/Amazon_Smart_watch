@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import classes from './App.module.css'
+import ProductData from './components/ProductData';
+import ProductDetails from './components/ProductDetails';
+import Productpreview from './components/Productpreview';
+import Topbar from './components/Topbar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    productData: ProductData,
+    currentPreviewImage : 'https://imgur.com/iOeUBV7.png',
+    currentPreviewImagepos : 0,
+    currentSelectedFeature : 0
+  }
+  onColorOptionClick = (pos)=>{
+    this.setState({currentPreviewImagepos:pos});
+  }
+  onFeatureItemClick = (pos) =>{
+    this.setState({currentSelectedFeature:pos});
+  }
+  render() {
+    return (
+      <div className="App">
+        <Topbar />
+        <div className={classes.Maincontainer}>
+          <div className={classes.Productpreview} >
+            <Productpreview currentPreviewImage={this.state.productData.colorOptions[this.state.currentPreviewImagepos].imageUrl} 
+            currentSelectedFeature={this.state.currentSelectedFeature} />
+          </div>
+          <div className={classes.ProductData}>
+            <ProductDetails onFeatureItemClick={this.onFeatureItemClick} data={this.state.productData} onColorOptionClick={this.onColorOptionClick} 
+            currentPreviewImagepos={this.state.currentPreviewImagepos} currentSelectedFeature={this.state.currentSelectedFeature}
+             />
+          </div>
+        </div>
+      </div >
+    );
+  }
 }
+
 
 export default App;

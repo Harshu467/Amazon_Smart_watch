@@ -1,0 +1,12 @@
+body{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.Maincontainer{
+    padding: 4% 12%;
+    margin-top: 32px;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
